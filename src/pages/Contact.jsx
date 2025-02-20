@@ -4,7 +4,7 @@ import { Canvas } from '@react-three/fiber';
 import Loader from '../components/Loader';
 import Fox from '../models/Fox';
 import Alert from '../components/Alert';
-
+import useAlert from '../hooks/useAlert';
 
 const Contact = () => {
   const formRef =  useRef(null);
@@ -41,7 +41,7 @@ const Contact = () => {
           hideAlert();
           setCurrentAnimation('idle')
           setForm({name:'',email:'',message:''})
-      },3000)
+      },[3000])
       setForm({name:'',email:'',message:''});
     }).catch((error) => {
         setIsLoading(false);
@@ -56,7 +56,7 @@ const Contact = () => {
   return (
     <section className='relative flex lg:flex-row flex-col max-container'> 
       {alert.show && <Alert {...alert} />}
-      <Alert {...alert} />
+    
       <div className='flex-1 min-w-[50%] flex flex-col'>  
         <h1 className='head-text'>Get in Touch</h1>
         <form className='w-full flex flex-col gap-7 mt-14' onSubmit={handleSubmit}> 
